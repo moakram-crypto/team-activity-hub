@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team Activity Hub</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Login screen -->
+  <section id="login-screen" class="screen">
+    <div class="login-card">
+      <h1>Team Activity Hub</h1>
+      <p class="subtitle">Enter the team password to see live activity.</p>
+      <form id="login-form">
+        <input type="text" id="login-name" placeholder="Your name" required />
+        <input type="password" id="login-password" placeholder="Team password" required />
+        <button type="submit">Join</button>
+      </form>
+      <p id="login-error" class="error"></p>
+    </div>
+  </section>
+
+  <!-- Dashboard -->
+  <section id="dashboard-screen" class="screen hidden">
+    <header class="topbar">
+      <h1>Team Activity Hub</h1>
+      <div class="topbar-right">
+        <span id="me-name"></span>
+        <span id="conn-status" class="conn-status">connecting…</span>
+        <button id="logout-btn">Log out</button>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <section class="panel">
+        <h2>Task Board</h2>
+        <form id="task-form" class="task-form">
+          <input type="text" id="task-title" placeholder="New task..." required />
+          <input type="text" id="task-assignee" placeholder="Assignee (optional)" />
+          <button type="submit">Add</button>
+        </form>
+
+        <div class="board">
+          <div class="column" data-status="todo">
+            <h3>To do</h3>
+            <div class="cards" id="col-todo"></div>
+          </div>
+          <div class="column" data-status="in_progress">
+            <h3>In progress</h3>
+            <div class="cards" id="col-in_progress"></div>
+          </div>
+          <div class="column" data-status="done">
+            <h3>Done</h3>
+            <div class="cards" id="col-done"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Live Activity</h2>
+        <ul id="activity-feed" class="activity-feed"></ul>
+      </section>
+    </main>
+  </section>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
